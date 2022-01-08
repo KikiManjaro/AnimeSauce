@@ -1,6 +1,5 @@
-# AnimeSauce
-
-Find anime informations from pictures, screenshot and web link
+# <img align="center" src="https://play-lh.googleusercontent.com/lnIkFLm4EP8ryce1gQt_b_i4pvS5C9QG5Jw9T6txWnhaT8kJ8SYQePXYaHeb-YC3IA=s180-rw" data-canonical-src="https://play-lh.googleusercontent.com/lnIkFLm4EP8ryce1gQt_b_i4pvS5C9QG5Jw9T6txWnhaT8kJ8SYQePXYaHeb-YC3IA=s180-rw" height="40" /> AnimeSauce
+Find anime informations from pictures, screenshot and web link.
 
 [![GooglePlay](https://img.shields.io/endpoint?color=green&logo=google-play&logoColor=green&url=https%3A%2F%2Fplayshields.herokuapp.com%2Fplay%3Fi%3Dcom.manjaro.anime_sauce%26l%3DAnimeSauce%26m%3D%24installs)](https://play.google.com/store/apps/details?id=com.manjaro.anime_sauce)  [![Rating](https://img.shields.io/endpoint?color=green&logo=google-play&logoColor=green&url=https%3A%2F%2Fplayshields.herokuapp.com%2Fplay%3Fi%3Dcom.manjaro.anime_sauce%26l%3DAnimeSauce%26m%3D%24rating/5)](https://play.google.com/store/apps/details?id=com.manjaro.anime_sauce)
 
