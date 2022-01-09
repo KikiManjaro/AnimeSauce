@@ -17,7 +17,6 @@ import 'package:validators/validators.dart';
 
 import 'anime.dart';
 
-// ignore: must_be_immutable
 class SearchPage extends StatefulWidget {
   IO.File image;
 
@@ -77,7 +76,6 @@ class _SearchPageState extends State<SearchPage> {
           sliderMain: Scaffold(
             backgroundColor: Color(0xff393e46),
             body: SingleChildScrollView(
-              // padding: EdgeInsets.all(30.0),
               child: ConstrainedBox(
                 constraints: BoxConstraints(
                     minHeight: MediaQuery.of(context).size.height - 120),
@@ -134,15 +132,6 @@ class _SearchPageState extends State<SearchPage> {
                         )
                       ],
                     ),
-                    // FlatButton(
-                    //   child: Text("Take a picture",
-                    //       style: TextStyle(color: Color(0xffeeeeee))),
-                    //   onPressed: takePicture,
-                    //   color: Color(0xff222831),
-                    //   shape: RoundedRectangleBorder(
-                    //       borderRadius: BorderRadius.circular(18.0),
-                    //       side: BorderSide(color: Color(0xff222831))),
-                    // ),
                     FlatButton(
                       child: Text("Import picture",
                           style: TextStyle(
@@ -164,7 +153,6 @@ class _SearchPageState extends State<SearchPage> {
                                 fontSize: 20,
                                 fontWeight: FontWeight.w700)),
                         onPressed: (AnimationController controller) {
-                          //TODO: fix multi pressing
                           if (_image != null && !searching) {
                             searching = true;
                             searchController = controller;
@@ -214,9 +202,6 @@ class _SearchPageState extends State<SearchPage> {
   }
 
   Future<bool> search() async {
-    // if (b64img.length >= 10000000) {
-    //   b64img = await compressFileTob64(_image);
-    // }
     Response response = await sendRequest();
     if (response.statusCode < 400) {
       print(jsonDecode(response.body));
@@ -249,53 +234,13 @@ class _SearchPageState extends State<SearchPage> {
   }
 
   Future<Response> sendRequest() async {
-    // String fileName = _image.path.split('/').last;
-    // final fileBytes = _image.readAsBytesSync();
-    // var streamData = Stream.fromIterable(fileBytes.map((e) => [e]));
-    //
-    // final DIO.Dio _dio = DIO.Dio();
-    // DIO.Response response;
-    // response = await _dio.put('https://api.trace.moe/search?cutBorders',
-    //     data: streamData,
-    //     options: DIO.Options(headers: {
-    //       DIO.Headers.contentLengthHeader: fileBytes.length,
-    //       "x-ms-blob-type": "BlockBlob",
-    //       "content-type": "image/jpeg"
-    //     }));
-
-    // var request = new MultipartRequest(
-    //     "POST", Uri.parse('https://api.trace.moe/search?cutBorders'));
-    // var stream = ByteStream(_image.openRead())..cast();
-    // var length = await _image.length();
-    // var multipartFile = new MultipartFile('file', stream, length,
-    //     filename: _image.path.split("/").last);
-    // request.files.add(multipartFile);
-    //
-    // var streamedResponse = await request.send();
-    // return await Response.fromStream(streamedResponse);
-
-    // HTML.Blob blob = new HTML.Blob(await _image.readAsBytes());
-
     var request = MultipartRequest("POST",
         Uri.parse('https://api.trace.moe/search?cutBorders&anilistInfo'));
-    // request.fields["text_field"] = text;
-    //create multipart using filepath, string or bytes
     var pic = await MultipartFile.fromPath("image", _image.path);
     //add multipart to request
     request.files.add(pic);
     var response = await request.send();
     return await Response.fromStream(response);
-
-    // var url = Uri.parse('https://api.trace.moe/search?cutBorders');
-    // new HTML.FileReader().readAsDataUrl(_image);
-    // Uint8List _bytesData = Base64Decoder().convert(_image.toString().split(",").last);
-    // List<int> _selectedFile = _bytesData;
-    // var request = new MultipartRequest("POST", url);
-    // request.files.add(MultipartFile.fromBytes('file', _selectedFile,
-    //     contentType: new MediaType('application', 'octet-stream'),
-    //     filename: "text_upload.txt"));
-    // var streamedResponse = await request.send();
-    // return await Response.fromStream(streamedResponse);
   }
 
   Future<String> imgToB64img(IO.File img) async {
@@ -353,17 +298,11 @@ class _SearchPageState extends State<SearchPage> {
     MobileAdTargetingInfo targetingInfo = MobileAdTargetingInfo(
       keywords: <String>['anime', 'weeb', 'game'],
       childDirected: false,
-      // or MobileAdGender.female, MobileAdGender.unknown
-      // testDevices: <String>["BA905F278B4B60D59D48419FC3A97C62"], // Android emulators are considered test devices
-      testDevices: <String>[], // Android emulators are considered test devices
+      testDevices: <String>[],
     );
 
     interstitial = InterstitialAd(
-      // Replace the testAdUnitId with an ad unit id from the AdMob dash.
-      // https://developers.google.com/admob/android/test-ads
-      // https://developers.google.com/admob/ios/test-ads
-      // adUnitId: "ca-app-pub-3940256099942544/8691691433", //debug
-      adUnitId: "ca-app-pub-3586860634843248/6328789767", //release
+      adUnitId: "ca-app-pub-3940256099942544/8691691433", //debug
       targetingInfo: targetingInfo,
       listener: (MobileAdEvent event) {
         print("InterstitialAd event is $event");
