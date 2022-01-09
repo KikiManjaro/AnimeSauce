@@ -121,7 +121,6 @@ class _ResultPage extends State<ResultPage> {
                     child: Text("Not the right anime ?",
                         style: TextStyle(
                             color: Color(0xffeeeeee),
-                            // fontSize: 20,
                             fontWeight: FontWeight.w700)),
                     onPressed: (AnimationController controller) {
                       searchController = controller;
