@@ -72,9 +72,6 @@ class _SaucenaoResultPage extends State<SaucenaoResultPage> {
       if (key != null && jsonRes[key] != null) {
         if (key == "ext_urls") {
           for (String url in jsonRes[key]) {
-            // if (url.startsWith("[") && url.endsWith("]")) {
-            //   url = url.substring(1, url.length - 1);
-            // }
             widgetList.add(
               Center(
                 child: FlatButton(
